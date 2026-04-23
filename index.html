@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfosBank - Acceso</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-showcase">
+            <div class="showcase-content">
+                <h1 class="showcase-title">InfosBank</h1>
+                <p class="showcase-text">Tu banca en línea, segura y confiable.</p>
+                <div class="sponsor-section">
+                    <p>Diseñado por:</p>
+                    <img src="logo.png" alt="Logo Patrocinador">
+                </div>
+            </div>
+        </div>
+
+        <div class="login-form-wrapper">
+            <div id="login-container">
+                <h2>Acceso a Clientes</h2>
+                <form id="login-form">
+                    <div class="form-group-icon">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="usuario" required placeholder="Usuario">
+                    </div>
+                    <div class="form-group-icon">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="password" required placeholder="Contraseña">
+                        <i class="fa fa-eye-slash" id="toggle-password"></i>
+                    </div>
+                    <button type="submit" class="btn btn-login">Ingresar</button>
+                    <p id="login-error" class="error-message"></p>
+                </form>
+
+                <div class="demo-accounts">
+                    <h4>Cuentas de Prueba</h4>
+                    <ul>
+                        <li><strong>Usuario:</strong> ana.gomez | <strong>Contraseña:</strong> demo123</li>
+                        <li><strong>Usuario:</strong> carlos.diaz | <strong>Contraseña:</strong> demo456</li>
+                    </ul>
+                </div>
+
+                <div class="data-management">
+                    <p>Opcional: Carga un archivo `json` para usar datos personalizados.</p>
+                    <button id="importar-btn" class="btn btn-secondary">Importar Clientes</button>
+                    <button id="exportar-btn" class="btn btn-secondary">Exportar Clientes</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                    <p id="import-feedback" class="feedback-message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

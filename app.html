@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfosBank - Mi Cuenta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="app-container" class="container">
+        <header>
+            <div class="logo">InfosBank</div>
+            <div class="user-info">
+                <span id="welcome-message"></span>
+                <button id="logout-btn" class="btn btn-tertiary"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <button class="nav-btn active" data-view="cuentas"><i class="fas fa-wallet"></i> Mis Cuentas</button>
+            <button class="nav-btn" data-view="propias"><i class="fas fa-exchange-alt"></i> Transferencias Propias</button>
+            <button class="nav-btn" data-view="terceros"><i class="fas fa-users"></i> Transferir a Terceros</button>
+            <button class="nav-btn" data-view="pagos"><i class="fas fa-credit-card"></i> Pagos</button>
+        </nav>
+
+        <main>
+            <section id="view-cuentas" class="view active">
+                <!-- Esta vista contendrá la lista de cuentas o el detalle de una cuenta -->
+                <div id="cuentas-list-container">
+                    <div class="cuentas-header">
+                        <h2>Mis Cuentas</h2>
+                        <button id="btn-mostrar-form-nueva-cuenta" class="btn btn-secondary">Crear Nueva Cuenta</button>
+                    </div>
+                    <form id="form-nueva-cuenta" style="display: none;" class="form-inline">
+                        <div class="form-group">
+                            <label for="nombre-nueva-cuenta">Nombre para la nueva cuenta:</label>
+                            <input type="text" id="nombre-nueva-cuenta" required placeholder="Ej: Ahorros para viaje">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Confirmar</button>
+                            <button type="button" id="btn-cancelar-nueva-cuenta" class="btn btn-tertiary">Cancelar</button>
+                        </div>
+                        <p id="nueva-cuenta-feedback" class="feedback-message"></p>
+                    </form>
+                    <div id="cuentas-list"></div>
+                </div>
+
+                <div id="cuenta-detalle-container" style="display: none;">
+                    <button id="btn-volver" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Volver a Mis Cuentas</button>
+                    <h2 id="detalle-cuenta-titulo"></h2>
+                    <div id="detalle-cuenta-movimientos"></div>
+                </div>
+            </section>
+
+            <section id="view-propias" class="view">
+                <h2>Transferir entre mis Cuentas</h2>
+                <form id="transfer-propias-form">
+                    <div class="form-group">
+                        <label for="origen-cuenta-propia">Desde la cuenta:</label>
+                        <select id="origen-cuenta-propia" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="destino-cuenta-propia">Hacia la cuenta:</label>
+                        <select id="destino-cuenta-propia" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto-propio">Monto ($)</label>
+                        <input type="number" id="monto-propio" step="0.01" min="0.01" required placeholder="50.00">
+                    </div>
+                    <button type="submit" class="btn">Transferir</button>
+                    <p id="transfer-propia-feedback" class="feedback-message"></p>
+                </form>
+            </section>
+
+            <section id="view-terceros" class="view">
+                <h2>Transferir a Terceros</h2>
+                <form id="transfer-form">
+                    <div class="form-group">
+                        <label for="origen-cuenta">Cuenta de Origen</label>
+                        <select id="origen-cuenta" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="destino-cuenta">Cuenta de Destino</label>
+                        <select id="destino-cuenta" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto">Monto ($)</label>
+                        <input type="number" id="monto" step="0.01" min="0.01" required placeholder="50.00">
+                    </div>
+
+                    <div class="token-section">
+                        <div class="token-header">
+                            <h4>Token de Seguridad</h4>
+                            <p>Nuevo token en <span class="token-timer">30</span>s</p>
+                        </div>
+                        <div class="token-display">------</div>
+                        <div class="progress-bar-container">
+                            <div class="token-progress-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="token-input">Ingresar Token</label>
+                        <input type="text" id="token-input" required autocomplete="off" placeholder="Ingrese el token de 6 dígitos" maxlength="6">
+                    </div>
+
+                    <button type="submit" class="btn btn-login">Transferir a Tercero</button>
+                    <p id="transfer-feedback" class="feedback-message"></p>
+                </form>
+            </section>
+
+            <section id="view-pagos" class="view">
+                <h2>Pago de Servicios</h2>
+
+                <div id="pagos-list-container">
+                    <div id="pagos-list">
+                        <!-- Payment summaries will be rendered here -->
+                    </div>
+                    <div class="agregar-pago-container-btn">
+                        <button id="btn-agregar-pago" class="btn btn-secondary">Programar Nuevo Pago</button>
+                    </div>
+                </div>
+
+                <div id="pago-detalle-container" style="display: none;">
+                    <!-- The full payment form will be rendered here by JS -->
+                </div>
+
+                <div id="configurar-pago-container" style="display: none;">
+                    <button id="btn-volver-pagos" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Volver a Pagos</button>
+                    <h3>Programar nuevo pago de servicio</h3>
+                    <form id="form-nuevo-pago">
+                        <div class="form-group">
+                            <label for="servicio-pago">Servicio</label>
+                            <select id="servicio-pago" required>
+                                <option value="" disabled selected>Seleccione un servicio</option>
+                                <option value="Tigo Internet">Tigo Internet</option>
+                                <option value="Más Móvil Internet">Más Móvil Internet</option>
+                                <option value="Naturgy">Naturgy</option>
+                                <option value="ENSA">ENSA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="numero-cuenta-servicio">Número de Contrato/Cuenta del Servicio</label>
+                            <input type="text" id="numero-cuenta-servicio" required placeholder="Ej: 12345678">
+                        </div>
+                        <div class="form-group">
+                            <label for="monto-default-pago">Monto a Pagar por Defecto ($)</label>
+                            <input type="number" id="monto-default-pago" step="0.01" min="0.01" required placeholder="50.00">
+                        </div>
+                        <button type="submit" class="btn">Guardar Programación</button>
+                        <p id="nuevo-pago-feedback" class="feedback-message"></p>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>Diseñado por</p>
+            <img src="logo2.png" alt="InfosGroup Logo" class="footer-logo-img">
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

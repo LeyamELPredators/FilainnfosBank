@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "usuario": "juanperez",
+    "password": "password123",
+    "nombre": "Juan Pérez",
+    "cuentas": [
+      {
+        "numero": "1111-2222-3333-4441",
+        "tipo": "Checking Account",
+        "saldo": 5250.75,
+        "movimientos": []
+      },
+      {
+        "numero": "1111-2222-3333-4442",
+        "tipo": "Savings Account",
+        "saldo": 15800.00,
+        "movimientos": []
+      }
+    ],
+    "pagosProgramados": []
+  },
+  {
+    "id": 2,
+    "usuario": "mariagarcia",
+    "password": "password456",
+    "nombre": "María García",
+    "cuentas": [
+      {
+        "numero": "1111-2222-3333-4443",
+        "tipo": "Checking Account",
+        "saldo": 8100.50,
+        "movimientos": []
+      }
+    ],
+    "pagosProgramados": []
+  },
+  {
+    "id": 3,
+    "usuario": "pedrorodriguez",
+    "password": "password789",
+    "nombre": "Pedro Rodríguez",
+    "cuentas": [
+      {
+        "numero": "1111-2222-3333-4444",
+        "tipo": "Savings Account",
+        "saldo": 25000.00,
+        "movimientos": []
+      },
+      {
+        "numero": "1111-2222-3333-4445",
+        "tipo": "Payroll Account",
+        "saldo": 1800.25,
+        "movimientos": []
+      }
+    ],
+    "pagosProgramados": []
+  }
+]
